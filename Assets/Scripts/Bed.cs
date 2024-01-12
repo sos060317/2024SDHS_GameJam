@@ -1,0 +1,23 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Bed : MonoBehaviour
+{
+    private bool isFull = false;
+
+    private void TouchPatient(Collider2D Patient)
+    {
+        if(Patient.CompareTag("Patient"))
+        {
+            isFull = true;
+            Debug.Log(isFull);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        TouchPatient(collision);
+    }
+}
