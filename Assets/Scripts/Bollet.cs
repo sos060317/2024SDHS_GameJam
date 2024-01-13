@@ -8,7 +8,6 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        
         //// 총알이 많이 날라가면 삭제 해주기
         //if (this.transform.position.y > 5)
         //{
@@ -17,12 +16,18 @@ public class Bullet : MonoBehaviour
 
         //    // 오브젝트 풀에 반환
         //}
-        
-
-        this.transform.Translate(Vector3.up * this.speed * Time.deltaTime);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("virus") || collision.gameObject.CompareTag("vaccine"))
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     private void OnBecameInvisible()
     {
-        Pool.Release(this.gameObject);
+        gameObject.SetActive(false);
     }
 }

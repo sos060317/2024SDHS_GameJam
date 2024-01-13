@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,12 +7,12 @@ public class PoolManager : MonoBehaviour
 {
     public static PoolManager instance;
 
-    public int defaultCapacity = 10;
-    public int maxPoolSize = 15;
-    public GameObject bulletPrefab;
-    
-
     public IObjectPool<GameObject> Pool { get; private set; }
+
+    private List<GameObject> pooledObjects = new List<GameObject>();
+    private int amountToPool = 20;
+
+    [SerializeField] private GameObject bulletPrefab;
 
     private void Awake()
     {
@@ -21,49 +20,37 @@ public class PoolManager : MonoBehaviour
             instance = this;
         else
             Destroy(this.gameObject);
-
-
-        Init();
     }
-   
 
-    private void Init()
+    void Start()
     {
-        Pool = new ObjectPool<GameObject>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool,
-        OnDestroyPoolObject, true, defaultCapacity, maxPoolSize);
-
-        // 미리 오브젝트 생성 해놓기
-        for (int i = 0; i < defaultCapacity; i++)
+        for (int i = 0; i < amountToPool; i++)
         {
-            Bullet bullet = CreatePooledItem().GetComponent<Bullet>();
-            bullet.Pool.Release(bullet.gameObject);
+            GameObject obj = Instantiate(bulletPrefab);
+            obj.SetActive(false);
+            pooledObjects.Add(obj);
         }
     }
 
-    // 생성
-    private GameObject CreatePooledItem()
+    public void Update()
     {
-        GameObject poolGo = Instantiate(bulletPrefab);
-        poolGo.GetComponent<Bullet>().Pool = this.Pool;
-        return poolGo;
+        if (Input.GetMouseButtonDown(0)) // 마우스 왼쪽 버튼 클릭 감지
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0;
+        }
     }
 
-    // 사용
-    public void OnTakeFromPool(GameObject poolGo)
+    public GameObject GetPooledObject()
     {
-        poolGo.SetActive(true);
-    }
+        for (int i = 0; i < pooledObjects.Count; i++)
+        {
+            if (!pooledObjects[i].activeInHierarchy)
+            {
+                return pooledObjects[i];
+            }
+        }
 
-    // 반환
-    private void OnReturnedToPool(GameObject poolGo)
-    {
-        poolGo.SetActive(false);
+        return null;
     }
-
-    // 삭제
-    private void OnDestroyPoolObject(GameObject poolGo)
-    {
-        Destroy(poolGo);
-    }
-    
 }
