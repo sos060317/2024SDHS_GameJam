@@ -5,6 +5,13 @@ public class Bullet : MonoBehaviour
 {
     public IObjectPool<GameObject> Pool { get; set; }
     public float speed = 5f;
+    Rigidbody2D rb;
+    public Vector3 dir;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
@@ -16,6 +23,10 @@ public class Bullet : MonoBehaviour
 
         //    // 오브젝트 풀에 반환
         //}
+
+        rb.velocity = dir * speed;
+        
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -25,13 +25,7 @@ public class SyringeShot : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            //// 총알생성을 플레이어가 하지 않는다.
-            ////var bulletGo = Instantiate(bulletPrefab);
-
-            //// 오브젝트풀 에서 빌려오기
-            //var bulletGo = PoolManager.instance.Pool.Get();
-
-            //bulletGo.transform.position = this.ShotPs.position;
+            
             Fire();
         }
     }
@@ -43,7 +37,8 @@ public class SyringeShot : MonoBehaviour
         if (bullet != null)
         {
             bullet.transform.position = ShotPs.position;
-            bullet.GetComponent<Rigidbody2D>().AddForce(dir * speed, ForceMode2D.Impulse);
+            bullet.GetComponent<Bullet>().dir = dir;
+            bullet.transform.rotation = gameObject.transform.rotation;
             bullet.SetActive(true);
         }
     }
