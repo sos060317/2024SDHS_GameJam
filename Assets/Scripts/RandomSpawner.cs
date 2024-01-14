@@ -1,29 +1,39 @@
 using UnityEngine;
+using UnityEngine.AI;
 
-public class ObjectSpawner : MonoBehaviour
+public class RandomSpawner : MonoBehaviour
 {
-    public GameObject objectToSpawn;  // 생성할 오브젝트
-    public float minSpawnInterval;  // 최소 생성 간격
-    public float maxSpawnInterval;  // 최대 생성 간격
-    public float spawnRangeX;    // 생성할 위치의 X 범위
+    public GameObject Thread; // 첫 번째 프리팹
+    public GameObject Wound; // 두 번째 프리팹
+
+    public float minX = -5f;   // 최소 x 값
+    public float maxX = 5f;    // 최대 x 값
+    public float minTime;
+    public float maxTime;
+    public float retuneTime;
+    
+
 
     void Start()
     {
-        // 최초 스폰 호출
         SpawnObject();
     }
 
     void SpawnObject()
     {
-        // 랜덤한 X 위치 계산
-        float spawnPositionX = Random.Range(-spawnRangeX, spawnRangeX);
+        // 프리팹 배열을 만들고 랜덤하게 선택
+        GameObject[] Objcets = { Thread, Wound , Wound};
+        GameObject selectedObjcet = Objcets[Random.Range(0, Objcets.Length)];
+        retuneTime = Random.Range(minTime, maxTime);
 
-        // 오브젝트 생성
-        Instantiate(objectToSpawn, new Vector3(spawnPositionX, 5, 0), Quaternion.identity);
+        // 랜덤한 x, y, z 좌표 생성
+        float randomX = Random.Range(minX, maxX);
 
-        // 다음 호출 간격을 랜덤으로 설정
-        float nextSpawnInterval = Random.Range(minSpawnInterval, maxSpawnInterval);
-        Invoke("SpawnObject", nextSpawnInterval);
+
+        // 랜덤한 위치에 오브젝트 생성
+        Vector3 spawnPosition = new Vector2(randomX, 5);
+        Instantiate(selectedObjcet, spawnPosition, Quaternion.identity);
+
+        if(MiniGameManager.instance.ThreadCount > 0) Invoke("SpawnObject", retuneTime);
     }
-
 }

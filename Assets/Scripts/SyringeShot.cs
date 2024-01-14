@@ -32,7 +32,7 @@ public class SyringeShot : MonoBehaviour
 
     private void Fire()
     {
-        GameObject bullet = PoolManager.instance.GetPooledObject();
+        GameObject bullet = MiniGameManager.instance.GetPooledObject();
 
         if (bullet != null)
         {

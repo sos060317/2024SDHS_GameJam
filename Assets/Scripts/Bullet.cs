@@ -10,7 +10,12 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
+        Collider collider = GetComponent<Collider>();
         rb = GetComponent<Rigidbody2D>();
+        if (collider != null)
+        {
+            collider.isTrigger = true;
+        }
     }
 
     void Update()
@@ -25,14 +30,23 @@ public class Bullet : MonoBehaviour
         //}
 
         rb.velocity = dir * speed;
-        
-        
+
+
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D o)
     {
-        if (collision.gameObject.CompareTag("virus") || collision.gameObject.CompareTag("vaccine"))
+        if (o.gameObject.tag == ("Wound"))
         {
+            Destroy(o.gameObject);
+            gameObject.SetActive(false);
+            Debug.Log("asdsa");
+        }
+        else if (o.gameObject.tag == ("Thread"))
+        {
+            Debug.Log("asdsa");
+
+            Destroy(o.gameObject);
             gameObject.SetActive(false);
         }
     }
@@ -40,5 +54,6 @@ public class Bullet : MonoBehaviour
     private void OnBecameInvisible()
     {
         gameObject.SetActive(false);
+
     }
 }

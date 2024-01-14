@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Virus : MonoBehaviour
+public class ChangeGraviteScale : MonoBehaviour
 {
     public float GravitySc;
     public float MaxGravitySc;

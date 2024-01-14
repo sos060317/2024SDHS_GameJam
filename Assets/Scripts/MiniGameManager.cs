@@ -1,21 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Purchasing;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class PoolManager : MonoBehaviour
+public class MiniGameManager : MonoBehaviour
 {
-    public static PoolManager instance;
+    public static MiniGameManager instance;
 
     public IObjectPool<GameObject> Pool { get; private set; }
 
     private List<GameObject> pooledObjects = new List<GameObject>();
     private int amountToPool = 20;
 
+    public int ThreadCount;
+    public int MaxThreadCount;
+    public int MinThreadCount;
+
+  
     [SerializeField] private GameObject bulletPrefab;
 
     private void Awake()
     {
+
         if (instance == null)
             instance = this;
         else
@@ -24,6 +31,8 @@ public class PoolManager : MonoBehaviour
 
     void Start()
     {
+        ThreadCount = Random.Range(MinThreadCount, MaxThreadCount);
+
         for (int i = 0; i < amountToPool; i++)
         {
             GameObject obj = Instantiate(bulletPrefab);
@@ -38,6 +47,10 @@ public class PoolManager : MonoBehaviour
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
+        }
+        if(ThreadCount <= 0)
+        {
+            ThreadCount = 0;
         }
     }
 
