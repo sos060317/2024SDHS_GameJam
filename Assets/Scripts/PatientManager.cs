@@ -12,21 +12,15 @@ public class PatientManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(AddPatient());
+        SetUpPatient();
     }
 
-    IEnumerator AddPatient()
+    private void SetUpPatient()
     {
-        while (true)
+        for(int i = 0; i < maxPatient; i++)
         {
-            if(maxPatient >= patients.Count)
-            {
-                patients.Add(patientPrefab);
-                Instantiate(patients[patients.Count -1].gameObject, transform.position, Quaternion.identity);
-                Debug.Log(patients.Count);
-            }
-            
+            patients.Add(patientPrefab);
+            Instantiate(patients[patients.Count - 1].gameObject, transform.position, Quaternion.identity);
         }
-        //yield return null;
     }
 }

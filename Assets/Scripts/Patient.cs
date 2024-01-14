@@ -6,4 +6,6 @@ public class Patient : MonoBehaviour
 {
     private bool isClear;
     private bool isCheck;
+
+
 }
