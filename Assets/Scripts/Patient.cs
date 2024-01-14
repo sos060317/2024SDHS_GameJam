@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class Patient : MonoBehaviour
 {
-    private void Start()
-    {
-        //GoBed();
-    }
-
-    private void GoBed()
-    {
-
-    }
+    private bool isClear;
+    private bool isCheck;
 }

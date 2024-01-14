@@ -46,9 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe178a6c31b8e444a7f8c6b55c6e74c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baeds:
-  - {fileID: 9132570935997805945}
-  - {fileID: 0}
+  beds: []
 --- !u!1001 &1432090200273337136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,17 +109,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7638968551107863874, guid: 9d8b6948d503de34da6d20276394af4e, type: 3}
   m_PrefabInstance: {fileID: 1432090200273337136}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9132570935997805945 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7882045444512583241, guid: 9d8b6948d503de34da6d20276394af4e, type: 3}
-  m_PrefabInstance: {fileID: 1432090200273337136}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 136338746d30f2f4f827cb3e2c7da18c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3646370947962218425
 PrefabInstance:
   m_ObjectHideFlags: 0

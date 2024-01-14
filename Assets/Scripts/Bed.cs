@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bed : MonoBehaviour
 {
-    private bool isFull = false;
+    [HideInInspector] public bool isFull = false;
 
     private void TouchPatient(Collider2D Patient)
     {
