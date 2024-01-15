@@ -13,7 +13,6 @@ public class BedsChecker : MonoBehaviour
     private void Start()
     {
         CheckBedIsFull();
-        Debug.Log(isEmptyList.Count);
     }
 
     public bool CheckBedIsFull()

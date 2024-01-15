@@ -7,7 +7,7 @@ public class Bed : MonoBehaviour
 {
     [HideInInspector] public bool isFull = false;
 
-    private void TouchPatient(Collider2D Patient)
+    private void EnterPatient(Collider2D Patient)
     {
         if(Patient.CompareTag("Patient"))
         {
@@ -15,8 +15,21 @@ public class Bed : MonoBehaviour
         }
     }
 
+    private void ExitPatient(Collider2D Patient)
+    {
+        if (Patient.CompareTag("Patient"))
+        {
+            isFull = false;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        TouchPatient(collision);
+        EnterPatient(collision);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        ExitPatient(collision);
     }
 }

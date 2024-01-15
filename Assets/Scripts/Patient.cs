@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Patient : MonoBehaviour
 {
@@ -14,22 +14,23 @@ public class Patient : MonoBehaviour
     private PatientStatess patientStatess;
 
     [SerializeField] private float moveSpeed;
+    [SerializeField] private Image stateIcon;
+    [SerializeField] private Sprite[] stateSprite;
 
     [HideInInspector] public Transform doorPosition;
-
-    private bool isClear;
-    private bool isCheck;
 
     private void Start()
     {
         SetUpPatientState();
-        Debug.Log(patientStatess);
         StartCoroutine(GoDoor());
     }
 
     private void SetUpPatientState()
     {
-        patientStatess = (PatientStatess)Random.Range(0, System.Enum.GetValues(typeof(PatientStatess)).Length);
+        int randomState = Random.Range(0, System.Enum.GetValues(typeof(PatientStatess)).Length);
+
+        patientStatess = (PatientStatess)randomState;
+        stateIcon.sprite = stateSprite[randomState];
     }
 
     IEnumerator GoDoor()
