@@ -156,6 +156,9 @@ MonoBehaviour:
   speed: 15
   ShotPs: {fileID: 1635614313}
   angle: 0
+  canSkill: 1
+  maxCoolTime: 0
+  currentCoolTime: 0
   Syringe: {x: 0, y: 0}
   mouse: {x: 0, y: 0}
 --- !u!212 &11372091

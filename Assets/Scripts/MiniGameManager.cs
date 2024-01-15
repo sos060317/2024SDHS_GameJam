@@ -17,6 +17,7 @@ public class MiniGameManager : MonoBehaviour
     public int MaxThreadCount;
     public int MinThreadCount;
 
+
   
     [SerializeField] private GameObject bulletPrefab;
 
@@ -66,4 +67,6 @@ public class MiniGameManager : MonoBehaviour
 
         return null;
     }
+
+    
 }
