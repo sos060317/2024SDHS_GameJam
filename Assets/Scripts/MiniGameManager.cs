@@ -13,10 +13,15 @@ public class MiniGameManager : MonoBehaviour
     private List<GameObject> pooledObjects = new List<GameObject>();
     private int amountToPool = 20;
 
+    public bool isStun = false;
+    public float StunTime;
+
     public int ThreadCount;
     public int MaxThreadCount;
     public int MinThreadCount;
-    public int WhatMedicine;
+    public int stateMedicine;
+    public int MedicineCount = 3;
+
     
     [SerializeField] private GameObject bulletPrefab;
 
@@ -32,7 +37,7 @@ public class MiniGameManager : MonoBehaviour
     void Start()
     {
         ThreadCount = Random.Range(MinThreadCount, MaxThreadCount);
-        WhatMedicine = Random.Range(1, 3);
+        stateMedicine = Random.Range(1, 3);
 
         for (int i = 0; i < amountToPool; i++)
         {
@@ -67,6 +72,5 @@ public class MiniGameManager : MonoBehaviour
 
         return null;
     }
-
     
 }

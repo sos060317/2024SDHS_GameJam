@@ -19,7 +19,6 @@ public class NewBehaviourScript : MonoBehaviour
     private Transform SpPoint;
 
 
-
     void Start()
     {
         AddOnjectSppoint();
