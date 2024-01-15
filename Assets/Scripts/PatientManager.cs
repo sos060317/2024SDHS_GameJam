@@ -1,26 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PatientManager : MonoBehaviour
 {
     [SerializeField] private int maxPatient;
-
-    [SerializeField] GameObject patientPrefab;
-
-    private List<GameObject> patients = new List<GameObject>();
+    [SerializeField] private Patient patientPrefab;
+    [SerializeField] private Transform doorPosition;
 
     private void Start()
     {
-        SetUpPatient();
+        StartCoroutine(SetUpPatient());
     }
 
-    private void SetUpPatient()
+    IEnumerator SetUpPatient()
     {
         for(int i = 0; i < maxPatient; i++)
         {
-            patients.Add(patientPrefab);
-            Instantiate(patients[patients.Count - 1].gameObject, transform.position, Quaternion.identity);
+            var patient = Instantiate(patientPrefab, transform.position, Quaternion.identity);
+
+            patient.doorPosition = doorPosition;
+
+            yield return new WaitForSeconds(5.0f);
         }
     }
 }

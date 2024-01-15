@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BedsChecker : MonoBehaviour
 {
-    [SerializeField] private Bed[] beds;
+    public Bed[] beds;
 
     private List<Bed> isEmptyList = new List<Bed>();
 
-    [HideInInspector] public bool isEmptyBed;
+    private bool isEmptyBed = false;
 
     private void Start()
     {
@@ -16,7 +16,7 @@ public class BedsChecker : MonoBehaviour
         Debug.Log(isEmptyList.Count);
     }
 
-    private List<Bed> CheckBedIsFull()
+    public bool CheckBedIsFull()
     {
         if (!beds[0].isFull)
         {
@@ -24,7 +24,7 @@ public class BedsChecker : MonoBehaviour
 
             isEmptyBed = true;
 
-            return isEmptyList;
+            return isEmptyBed;
         }
 
         if (!beds[1].isFull)
@@ -33,9 +33,9 @@ public class BedsChecker : MonoBehaviour
 
             isEmptyBed = true;
 
-            return isEmptyList;
+            return isEmptyBed;
         }
 
-        return isEmptyList;
+        return false;
     }
 }

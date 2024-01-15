@@ -12,7 +12,6 @@ public class Bed : MonoBehaviour
         if(Patient.CompareTag("Patient"))
         {
             isFull = true;
-            Debug.Log(isFull);
         }
     }
 
