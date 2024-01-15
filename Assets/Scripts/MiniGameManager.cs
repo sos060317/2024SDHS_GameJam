@@ -16,9 +16,8 @@ public class MiniGameManager : MonoBehaviour
     public int ThreadCount;
     public int MaxThreadCount;
     public int MinThreadCount;
-
-
-  
+    public int WhatMedicine;
+    
     [SerializeField] private GameObject bulletPrefab;
 
     private void Awake()
@@ -33,6 +32,7 @@ public class MiniGameManager : MonoBehaviour
     void Start()
     {
         ThreadCount = Random.Range(MinThreadCount, MaxThreadCount);
+        WhatMedicine = Random.Range(1, 3);
 
         for (int i = 0; i < amountToPool; i++)
         {

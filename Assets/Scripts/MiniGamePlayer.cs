@@ -5,6 +5,7 @@ using UnityEngine;
 public class MiniGamePlayer : MonoBehaviour
 {
     Rigidbody2D rb;
+    SpriteRenderer sp;
     public float Speed;
     public float JumpPower;
 
@@ -13,45 +14,53 @@ public class MiniGamePlayer : MonoBehaviour
 
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
+        sp = GetComponent<SpriteRenderer>();
     }
 
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) { PlayerJump(); }
-
-        PlayerMove();
+        
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        {
+            Debug.Log("sdsd");
+            isJumping = true;
+            PlayerJump();
 
+        }
+
+        PlayerMove();
     }
 
     void PlayerMove()
     {
-        Vector2 moveVelocity = Vector2.zero;
+        float h = Input.GetAxis("Horizontal");
 
-        if (Input.GetAxis("Horizontal") < 0)
-        {
-            moveVelocity = Vector3.left;
-        }
         if (Input.GetAxis("Horizontal") > 0)
         {
-            moveVelocity = Vector3.left;
+            sp.flipX = false;
+            //transform.localScale = new Vector3(-1, 1, 1);
         }
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            sp.flipX = true;
+            //transform.localScale = new Vector3(1, 1, 1);
+        }
+        transform.Translate(new Vector3(h, 0, 0) * Speed * Time.deltaTime);
 
-
-        transform.position = moveVelocity * Speed * Time.deltaTime;
     }
     void PlayerJump()
     {
-
-        rb.velocity = Vector2.zero;
-
-        Vector2 jumpVelocity = new Vector2(0, JumpPower);
-        rb.AddForce(jumpVelocity, ForceMode2D.Impulse);
-
-        isJumping = false;
+        rb.AddForce(Vector2.up * JumpPower, ForceMode2D.Impulse);
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground")){
+            isJumping = false;
+        }
     }
 }
