@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,11 +17,13 @@ public class Patient : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private Image stateIcon;
     [SerializeField] private Sprite[] stateSprite;
+    [SerializeField] private Button startMiniGame;
 
     [HideInInspector] public Transform doorPosition;
 
     private void Start()
     {
+        startMiniGame.enabled = false;
         SetUpPatientState();
         StartCoroutine(GoDoor());
     }
@@ -31,6 +34,11 @@ public class Patient : MonoBehaviour
 
         patientStatess = (PatientStatess)randomState;
         stateIcon.sprite = stateSprite[randomState];
+    }
+
+    public void StartMiniGame()
+    {
+        Debug.Log("a;skdfj");
     }
 
     IEnumerator GoDoor()
@@ -61,6 +69,8 @@ public class Patient : MonoBehaviour
                 yield return null;
             }
         }
+
+        startMiniGame.enabled = true;
 
         yield break;
     }
