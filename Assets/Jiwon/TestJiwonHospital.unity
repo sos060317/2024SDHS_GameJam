@@ -250,7 +250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &354875502
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46fb6a07f89a9374b9714b1fe09ea5d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPatient: 3
+  maxPatient: 7
   patientPrefab: {fileID: 6519204353872289271, guid: f5cd705fc914f804d9ab2f75375c5e53, type: 3}
   doorPosition: {fileID: 795080901}
 --- !u!4 &577612355
@@ -716,7 +716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1567724540
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1033,7 +1033,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1913093159
 BoxCollider2D:
   m_ObjectHideFlags: 0

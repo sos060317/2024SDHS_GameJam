@@ -5,6 +5,14 @@ using UnityEngine.UIElements;
 
 public class Patient : MonoBehaviour
 {
+    private enum PatientStatess
+    {
+        cut = 0, 
+        tear,
+        Coronavirus
+    }
+    private PatientStatess patientStatess;
+
     [SerializeField] private float moveSpeed;
 
     [HideInInspector] public Transform doorPosition;
@@ -14,7 +22,16 @@ public class Patient : MonoBehaviour
 
     private void Start()
     {
+
+
         StartCoroutine(GoDoor());
+    }
+
+    private void SetUpPatientState()
+    {
+         int randomState = Random.Range(0, System.Enum.GetValues(typeof(PatientStatess)).Length);
+
+        //patientStatess = randomState;
     }
 
     IEnumerator GoDoor()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PatientManager : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class PatientManager : MonoBehaviour
     {
         for(int i = 0; i < maxPatient; i++)
         {
+            if (!BedsManager.Instance.bedsCheckers[^1].CheckBedIsFull())
+            {
+                yield break;
+            }
+
             var patient = Instantiate(patientPrefab, transform.position, Quaternion.identity);
 
             patient.doorPosition = doorPosition;
