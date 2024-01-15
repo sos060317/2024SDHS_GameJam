@@ -22,16 +22,14 @@ public class Patient : MonoBehaviour
 
     private void Start()
     {
-
-
+        SetUpPatientState();
+        Debug.Log(patientStatess);
         StartCoroutine(GoDoor());
     }
 
     private void SetUpPatientState()
     {
-         int randomState = Random.Range(0, System.Enum.GetValues(typeof(PatientStatess)).Length);
-
-        //patientStatess = randomState;
+        patientStatess = (PatientStatess)Random.Range(0, System.Enum.GetValues(typeof(PatientStatess)).Length);
     }
 
     IEnumerator GoDoor()
