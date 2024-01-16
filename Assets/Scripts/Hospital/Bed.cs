@@ -20,6 +20,7 @@ public class Bed : MonoBehaviour
         if (Patient.CompareTag("Patient"))
         {
             isFull = false;
+            Debug.Log(isFull);
         }
     }
 

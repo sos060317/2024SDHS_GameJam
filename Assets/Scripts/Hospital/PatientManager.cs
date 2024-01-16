@@ -11,7 +11,7 @@ public class PatientManager : MonoBehaviour
     [SerializeField] private Transform doorPosition;
 
     [SerializeField] private float maxSpawnTime;
-    private float currentSpawnTime;
+    [SerializeField] private float currentSpawnTime;
 
     private void Start()
     {
@@ -40,14 +40,32 @@ public class PatientManager : MonoBehaviour
 
     private void SetUpPatient()
     {
-        if (!BedsManager.Instance.bedsCheckers[^1].CheckBedIsFull())
+        if (BedsManager.Instance.bedsCheckers[2].CheckBedIsFull())
         {
-            return;
+            var patient = Instantiate(patientPrefab, transform.position, Quaternion.identity);
+
+            patient.doorPosition = doorPosition;
+        }
+        else if (BedsManager.Instance.bedsCheckers[1].CheckBedIsFull())
+        {
+            var patient = Instantiate(patientPrefab, transform.position, Quaternion.identity);
+
+            patient.doorPosition = doorPosition;
+        }
+        else if (BedsManager.Instance.bedsCheckers[0].CheckBedIsFull())
+        {
+            var patient = Instantiate(patientPrefab, transform.position, Quaternion.identity);
+
+            patient.doorPosition = doorPosition;
         }
 
-        var patient = Instantiate(patientPrefab, transform.position, Quaternion.identity);
+        //if (!BedsManager.Instance.bedsCheckers[2].CheckBedIsFull())
+        //{
+        //    return;
+        //}
+        //var patient = Instantiate(patientPrefab, transform.position, Quaternion.identity);
 
-        patient.doorPosition = doorPosition;
+        //patient.doorPosition = doorPosition;
     }
 
     //IEnumerator SetUpPatient()

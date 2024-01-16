@@ -67,7 +67,9 @@ public class Patient : MonoBehaviour
 
     public void StartMiniGame()
     {
-        Debug.Log("a;skdfj");
+        GameManager.Instance.isGameStart = false;
+        GameManager.Instance.fadeBackground.gameObject.SetActive(true);
+        GameManager.Instance.FadeINOUTStart();
     }
 
     IEnumerator GoDoor()
