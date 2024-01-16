@@ -10,7 +10,8 @@ public class StateMedicine : MonoBehaviour
     public bool Fz;
     public int WhatState;
     public int thisMedicineState;
-
+    public GameObject effect;
+    public GameObject healeffect;
     
     void Start()
     {
@@ -41,11 +42,13 @@ public class StateMedicine : MonoBehaviour
             if(thisMedicineState == WhatState)
             {
                 MiniGameManager.instance.MedicineCount--;
+                Instantiate(healeffect, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
             else
             {
                 MiniGameManager.instance.isStun = true;
+                Instantiate(effect,transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
         }
@@ -57,6 +60,7 @@ public class StateMedicine : MonoBehaviour
             }
             else
             {
+                Instantiate(effect, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);   
             }
         }
