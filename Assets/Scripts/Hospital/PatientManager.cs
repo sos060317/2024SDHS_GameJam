@@ -25,6 +25,9 @@ public class PatientManager : MonoBehaviour
 
     private void CheckEmptyBed()
     {
+        if (!GameManager.Instance.isGameStart)
+            return;
+
         currentSpawnTime += Time.deltaTime;
 
         if (maxSpawnTime > currentSpawnTime)

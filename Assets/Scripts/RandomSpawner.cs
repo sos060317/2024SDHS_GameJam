@@ -6,21 +6,22 @@ public class RandomSpawner : MonoBehaviour
     public GameObject Thread; // 첫 번째 프리팹
     public GameObject Wound; // 두 번째 프리팹
 
-    public float minX = -5f;   // 최소 x 값
-    public float maxX = 5f;    // 최대 x 값
+    //이거 변수 값좀 내가 바꿔다 - 우지원
+    public float minX = -108f;    // 최소 x 값
+    public float maxX = -92f;    // 최대 x 값
     public float minTime;
     public float maxTime;
     public float retuneTime;
 
     private void OnEnable()
     {
-        MiniGameManager.instance.ThreadCount = Random.Range(5, 10);
-        SpawnObject();
     }
 
     void Start()
     {
-       
+        //이것도 내가 OnEnable에 있던거 위치 바꿨어 이유 궁금하면 내일 물어봐 - 우지원
+        MiniGameManager.instance.ThreadCount = Random.Range(5, 10);
+        SpawnObject();
     }
 
     void SpawnObject()

@@ -41,7 +41,7 @@ public class Patient : MonoBehaviour
 
     private void SetUpClearTime()
     {
-        clearTime = Random.Range(60, 91);
+        clearTime = Random.Range(6, 9) - GameManager.Instance.clearPatient;
     }
 
     private void ClearTimeDown()
@@ -64,6 +64,7 @@ public class Patient : MonoBehaviour
         if (clearTimeRing.fillAmount <= 0 )
         {
             clearTimeRing.fillAmount = 0;
+            GameManager.Instance.currentMoney -= 10 - GameManager.Instance.clearPatient;
             Destroy(gameObject);
         }
     }
@@ -78,9 +79,9 @@ public class Patient : MonoBehaviour
 
     public void StartMiniGame()
     {
-        GameManager.Instance.isGameStart = false;
+        //GameManager.Instance.isGameStart = false;
         GameManager.Instance.fadeBackground.gameObject.SetActive(true);
-        GameManager.Instance.FadeINOUTStart();
+        GameManager.Instance.FadeINOUTStart((int)patientStatess);
     }
 
     IEnumerator GoDoor()

@@ -1,3 +1,4 @@
+using EasyTransition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-    public void GoInGame()
+    [SerializeField] private TransitionSettings transition;
+
+    private void Update()
     {
-        SceneManager.LoadScene("InGame");
+        if(Input.anyKeyDown)
+        {
+            LoadScene("InGame");
+        }
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        TransitionManager.Instance().Transition(sceneName, transition, 0f);
     }
 }
