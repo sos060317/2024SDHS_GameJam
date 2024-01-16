@@ -7,10 +7,20 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private Camera camera;
 
+    [SerializeField] private GameObject restartMenu;
+
+    [SerializeField] private GameObject[] miniGames;
+
+    [SerializeField] private Image moneyBar;
+    [SerializeField] private float maxMoney;
+    [HideInInspector] public float currentMoney;
+
     public Image fadeBackground;
     private Color fadeColor;
 
-    [HideInInspector] public bool isGameStart = true;
+    [HideInInspector] public float clearPatient = 0;
+
+    [HideInInspector] public bool isGameStart = false;
 
     [HideInInspector] public float clearTimeOffset = 0.0f;
 
@@ -41,12 +51,41 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void FadeINOUTStart()
+    private void Start()
     {
-        StartCoroutine(FadeINOUT());
+        currentMoney = maxMoney;
     }
 
-    IEnumerator FadeINOUT()
+    private void Update()
+    {
+        MoneyBar();
+    }
+
+    private void MoneyBar()
+    {
+        moneyBar.fillAmount = Mathf.Lerp(moneyBar.fillAmount,
+            currentMoney / maxMoney, 10 * Time.deltaTime);
+
+        if(moneyBar.fillAmount < 0.1)
+        {
+            isGameStart = false;
+            restartMenu.gameObject.SetActive(true);
+        }
+    }
+
+    private void StartMiniGame(int cameraFloor)
+    {
+        camera.transform.position = new Vector3(-(100 + (100 * cameraFloor)), 0, -10);
+
+        miniGames[cameraFloor].gameObject.SetActive(true);
+    }
+
+    public void FadeINOUTStart(int anyPatient)
+    {
+        StartCoroutine(FadeINOUT(anyPatient));
+    }
+
+    IEnumerator FadeINOUT(int anyPatient)
     {
         fadeColor.a = 0.0f;
         fadeBackground.color = fadeColor;
@@ -66,6 +105,8 @@ public class GameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1.0f);
+
+        StartMiniGame(anyPatient);
 
         while (fadeColor.a >= 0.0f)
         {
