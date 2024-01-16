@@ -28,6 +28,7 @@ public class Patient : MonoBehaviour
     {
         SetUpClearTime();
         stateIcon.fillAmount = 1;
+        clearTimeRing.color = Color.green;
         startMiniGame.enabled = false;
         SetUpPatientState();
         StartCoroutine(GoDoor());
@@ -50,7 +51,17 @@ public class Patient : MonoBehaviour
 
         clearTimeRing.fillAmount -= 1 / clearTime * Time.deltaTime;
 
-        if(clearTimeRing.fillAmount <= 0 )
+        if(clearTimeRing.fillAmount <= 0.3f)
+        {
+            clearTimeRing.color = Color.red;
+        }
+        else if(clearTimeRing.fillAmount <= 0.7f)
+        {
+            clearTimeRing.color = Color.yellow;
+        }
+
+
+        if (clearTimeRing.fillAmount <= 0 )
         {
             clearTimeRing.fillAmount = 0;
             Destroy(gameObject);
