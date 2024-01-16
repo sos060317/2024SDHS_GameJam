@@ -273,7 +273,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 365c4634b3c0f7b4e9af0bcae8a0f01e, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -383,12 +383,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  clearTimeRing: {fileID: 3257556495387919441}
   stateIcon: {fileID: 73136605505585352}
   stateSprite:
   - {fileID: 21300000, guid: 2ea875c4c06a84043a81a560074555a1, type: 3}
   - {fileID: 21300000, guid: c12c3db8a38631f4480979646fe2659d, type: 3}
   - {fileID: 21300000, guid: ed1f7ba9e3203e844a1637be1116774b, type: 3}
   startMiniGame: {fileID: 4700955011098229198}
+  clearTime: 5
   doorPosition: {fileID: 0}
 --- !u!50 &1923909051044996262
 Rigidbody2D:

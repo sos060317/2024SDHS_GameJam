@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [HideInInspector] public float clearTimeOffset = 0.0f;
+
     private static GameManager instance = null;
 
     public static GameManager Instance

@@ -15,17 +15,46 @@ public class Patient : MonoBehaviour
     private PatientStatess patientStatess;
 
     [SerializeField] private float moveSpeed;
+    [SerializeField] private Image clearTimeRing;
     [SerializeField] private Image stateIcon;
     [SerializeField] private Sprite[] stateSprite;
     [SerializeField] private Button startMiniGame;
+
+    [SerializeField] private float clearTime;
 
     [HideInInspector] public Transform doorPosition;
 
     private void Start()
     {
+        SetUpClearTime();
+        stateIcon.fillAmount = 1;
         startMiniGame.enabled = false;
         SetUpPatientState();
         StartCoroutine(GoDoor());
+    }
+
+    private void Update()
+    {
+        ClearTimeDown();
+    }
+
+    private void SetUpClearTime()
+    {
+        clearTime = Random.Range(60, 91);
+    }
+
+    private void ClearTimeDown()
+    {
+        if (!startMiniGame.enabled)
+            return;
+
+        clearTimeRing.fillAmount -= 1 / clearTime * Time.deltaTime;
+
+        if(clearTimeRing.fillAmount <= 0 )
+        {
+            clearTimeRing.fillAmount = 0;
+            Destroy(gameObject);
+        }
     }
 
     private void SetUpPatientState()
