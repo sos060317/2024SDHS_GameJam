@@ -8,6 +8,7 @@ public class ObjectMove : MonoBehaviour
     public float speed;
     public bool isBandit = false;
     public GameObject effect;
+    public GameObject Healeffect;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class ObjectMove : MonoBehaviour
             }
             if(other.gameObject.tag == ("Player"))
             {
+                Instantiate(Healeffect, transform.position, Quaternion.identity);
                 MiniGameManager.instance.BanditCount--;
                 Destroy(gameObject);
             }

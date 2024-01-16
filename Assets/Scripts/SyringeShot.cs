@@ -44,6 +44,7 @@ public class SyringeShot : MonoBehaviour
     {
         GameObject bullet = MiniGameManager.instance.GetPooledObject();
 
+        AudioManager.Instance.SfxPlay(1);
 
         if (bullet != null)
         {
