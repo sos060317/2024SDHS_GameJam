@@ -37,7 +37,7 @@ public class MiniGameManager : MonoBehaviour
 
     void Start()
     {
-        
+        stateMedicine = Random.Range(1, 3);
 
         for (int i = 0; i < amountToPool; i++)
         {

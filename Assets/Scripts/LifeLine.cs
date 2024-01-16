@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LifeLine : MonoBehaviour
 {
+    public GameObject Healeffcet;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class LifeLine : MonoBehaviour
         }
         else if (o.gameObject.tag == ("Thread"))
         {
+            Instantiate(Healeffcet, o.transform.position, Quaternion.identity);
             Destroy(o.gameObject);
             MiniGameManager.instance.ThreadCount -= 1;
             AudioManager.Instance.SfxPlay(0);

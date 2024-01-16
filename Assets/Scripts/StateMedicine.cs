@@ -41,6 +41,7 @@ public class StateMedicine : MonoBehaviour
         {
             if(thisMedicineState == WhatState)
             {
+                AudioManager.Instance.SfxPlay(0);
                 MiniGameManager.instance.MedicineCount--;
                 Instantiate(healeffect, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
@@ -57,9 +58,11 @@ public class StateMedicine : MonoBehaviour
             if (thisMedicineState == WhatState)
             {
                 MiniGameManager.instance.isStun = true;
+                AudioManager.Instance.SfxPlay(2);
             }
             else
             {
+                AudioManager.Instance.SfxPlay(2);
                 Instantiate(effect, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);   
             }
