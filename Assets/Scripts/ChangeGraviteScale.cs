@@ -23,6 +23,9 @@ public class ChangeGraviteScale : MonoBehaviour
     
     void Update()
     {
-        
+        if(MiniGameManager.instance.ThreadCount <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -11,12 +11,16 @@ public class RandomSpawner : MonoBehaviour
     public float minTime;
     public float maxTime;
     public float retuneTime;
-    
 
+    private void OnEnable()
+    {
+        MiniGameManager.instance.ThreadCount = Random.Range(5, 10);
+        SpawnObject();
+    }
 
     void Start()
     {
-        SpawnObject();
+       
     }
 
     void SpawnObject()
@@ -31,7 +35,7 @@ public class RandomSpawner : MonoBehaviour
 
 
         // 랜덤한 위치에 오브젝트 생성
-        Vector3 spawnPosition = new Vector2(randomX, 5);
+        Vector3 spawnPosition = new Vector2(randomX, 8);
         Instantiate(selectedObjcet, spawnPosition, Quaternion.identity);
 
         if(MiniGameManager.instance.ThreadCount > 0) Invoke("SpawnObject", retuneTime);

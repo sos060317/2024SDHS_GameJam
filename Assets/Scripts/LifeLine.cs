@@ -30,7 +30,7 @@ public class LifeLine : MonoBehaviour
         {
             Destroy(o.gameObject);
             MiniGameManager.instance.ThreadCount -= 1;
-
+            AudioManager.Instance.SfxPlay(0);
         }
     }
 }

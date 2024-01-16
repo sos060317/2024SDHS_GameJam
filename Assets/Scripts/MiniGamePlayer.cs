@@ -17,7 +17,7 @@ public class MiniGamePlayer : MonoBehaviour
     public bool isAttack = false;
     public float speed;
     public bool isJumping = false;
-
+    public bool BiteGamePlayer = false;
 
     void Start()
     {
@@ -37,7 +37,7 @@ public class MiniGamePlayer : MonoBehaviour
     {
         if (!MiniGameManager.instance.isStun)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+            if (Input.GetKeyDown(KeyCode.Space) && !isJumping && !BiteGamePlayer)
             {
                 Debug.Log("sdsd");
                 isJumping = true;
@@ -49,11 +49,19 @@ public class MiniGamePlayer : MonoBehaviour
                 //attackRange.enabled = true;
                 isAttack = true;
                 AttackRange.SetActive(true);
-                Invoke("IsAttack", 1f);
                 animator.SetTrigger("Attack");
-
             }
-            PlayerMove();
+            if (Input.GetKeyUp(KeyCode.F))
+            {
+                isAttack = false;
+
+                AttackRange.SetActive(false);
+            }
+            if (!BiteGamePlayer)
+            {
+                PlayerMove();
+            }
+            
         }
         else if(MiniGameManager.instance.isStun)
         {
@@ -79,6 +87,7 @@ public class MiniGamePlayer : MonoBehaviour
             //transform.localScale = new Vector3(1, 1, 1);
         }
         transform.Translate(new Vector3(h, 0, 0) * speed * Time.deltaTime);
+
         Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position); //캐릭터의 월드 좌표를 뷰포트 좌표계로 변환해준다.
         viewPos.x = Mathf.Clamp01(viewPos.x); //x값을 0이상, 1이하로 제한한다.
         viewPos.y = Mathf.Clamp01(viewPos.y); //y값을 0이상, 1이하로 제한한다.
@@ -104,11 +113,11 @@ public class MiniGamePlayer : MonoBehaviour
     }
     public void StunEnd()
     {
-        Debug.Log("응애");
         MiniGameManager.instance.isStun = false;
     }
     private void OnBecameInvisible()
     {
+        if(!BiteGamePlayer)
         transform.position = PlayerSpawnps.transform.position;
     }
 }

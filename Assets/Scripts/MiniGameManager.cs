@@ -17,6 +17,7 @@ public class MiniGameManager : MonoBehaviour
     public float StunTime;
 
     public int ThreadCount;
+    public int BanditCount;
     public int MaxThreadCount;
     public int MinThreadCount;
     public int stateMedicine;
@@ -36,8 +37,7 @@ public class MiniGameManager : MonoBehaviour
 
     void Start()
     {
-        ThreadCount = Random.Range(MinThreadCount, MaxThreadCount);
-        stateMedicine = Random.Range(1, 3);
+        
 
         for (int i = 0; i < amountToPool; i++)
         {

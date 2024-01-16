@@ -18,6 +18,12 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] GameObject[] SpawnPoint;
     private Transform SpPoint;
 
+    private void OnEnable()
+    {
+        MiniGameManager.instance.ThreadCount = Random.Range(MiniGameManager.instance.MinThreadCount, MiniGameManager.instance.MaxThreadCount);
+        MiniGameManager.instance.stateMedicine = Random.Range(1, 3);
+
+    }
 
     void Start()
     {

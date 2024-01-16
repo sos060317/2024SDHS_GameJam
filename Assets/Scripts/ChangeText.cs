@@ -31,5 +31,10 @@ public class ChangeText : MonoBehaviour
             resourceText.text = "화이자 " + MiniGameManager.instance.MedicineCount + "개";
             resourceText.color = Color.blue;
         }
+        if(MiniGameManager.instance.MedicineCount <= 0)
+        {
+            resourceText.text = "치료성공!!!";
+            resourceText.color = Color.green;
+        }
     }
 }
