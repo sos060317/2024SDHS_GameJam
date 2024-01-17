@@ -20,13 +20,13 @@ public class RandomBiteSpawner : MonoBehaviour
     public GameObject Spawnpoint;
     private void OnEnable()
     {
-        
+        MiniGameManager.instance.BanditCount = Random.Range(MinTime, MaxTime);
+        SpawnObject();
     }
 
     void Start()
     {
-        MiniGameManager.instance.BanditCount = Random.Range(MinTime, MaxTime);
-        SpawnObject();
+        
     }
 
     void Update()

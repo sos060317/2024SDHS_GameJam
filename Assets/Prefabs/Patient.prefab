@@ -408,6 +408,7 @@ MonoBehaviour:
   clearTimeRing: {fileID: 3257556495387919441}
   stateIcon: {fileID: 73136605505585352}
   stateSprite:
+  - {fileID: 21300000, guid: 365c4634b3c0f7b4e9af0bcae8a0f01e, type: 3}
   - {fileID: 21300000, guid: bd5a83aab0012874d9280df5821fe044, type: 3}
   - {fileID: 21300000, guid: fab9e4728b94e7d4f9aa7cf08a5e9e80, type: 3}
   - {fileID: 21300000, guid: e7b9021f6cfceeb47af0431557ce3248, type: 3}

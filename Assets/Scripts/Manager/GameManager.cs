@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Camera camera;
+    public Camera camera;
 
     [SerializeField] private GameObject restartMenu;
 
     [SerializeField] private GameObject[] miniGames;
+
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] public int scoreNumber = 0;
 
     [SerializeField] private Image moneyBar;
     [SerializeField] private float maxMoney;
@@ -54,11 +58,13 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         currentMoney = maxMoney;
+        scoreText.text = scoreNumber.ToString();
     }
 
     private void Update()
     {
         MoneyBar();
+        scoreText.text = scoreNumber.ToString();
     }
 
     private void MoneyBar()
@@ -75,9 +81,12 @@ public class GameManager : MonoBehaviour
 
     private void StartMiniGame(int cameraFloor)
     {
-        camera.transform.position = new Vector3(-(100 + (100 * cameraFloor)), 0, -10);
-
+        camera.transform.position = new Vector3(miniGames[cameraFloor].transform.position.x,
+            miniGames[cameraFloor].transform.position.y, -10);
+        
         miniGames[cameraFloor].gameObject.SetActive(true);
+
+        MiniGameManager.miniGamesNumber = cameraFloor;
     }
 
     public void FadeINOUTStart(int anyPatient)
@@ -85,7 +94,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(FadeINOUT(anyPatient));
     }
 
-    IEnumerator FadeINOUT(int anyPatient)
+    public IEnumerator FadeINOUT(int anyPatient)
     {
         fadeColor.a = 0.0f;
         fadeBackground.color = fadeColor;

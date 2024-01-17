@@ -20,11 +20,14 @@ public class MiniGameManager : MonoBehaviour
     public int BanditCount;
     public int MaxThreadCount;
     public int MinThreadCount;
-    public int stateMedicine;
+    public static int stateMedicine;
     public int MedicineCount = 3;
 
     
     [SerializeField] private GameObject bulletPrefab;
+
+    public GameObject[] miniGames;
+    public static int miniGamesNumber;
 
     private void Awake()
     {
@@ -60,6 +63,11 @@ public class MiniGameManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
     public GameObject GetPooledObject()
     {
         for (int i = 0; i < pooledObjects.Count; i++)
@@ -72,5 +80,16 @@ public class MiniGameManager : MonoBehaviour
 
         return null;
     }
-    
+
+    public IEnumerator ReturnCamera(Camera camera)
+    {
+        yield return new WaitForSeconds(2.5f);
+
+        StartCoroutine(GameManager.Instance.FadeINOUT(0));
+
+        miniGames[miniGamesNumber].gameObject.SetActive(false);
+        camera.transform.position = new Vector3(0, 0, -10);
+
+        yield break;
+    }
 }
