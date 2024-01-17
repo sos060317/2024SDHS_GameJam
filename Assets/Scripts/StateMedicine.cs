@@ -15,7 +15,7 @@ public class StateMedicine : MonoBehaviour
     
     void Start()
     {
-        WhatState = MiniGameManager.instance.stateMedicine;
+        WhatState = MiniGameManager.stateMedicine;
         if (Md)
         {
             thisMedicineState = 1;
@@ -32,7 +32,11 @@ public class StateMedicine : MonoBehaviour
 
     void Update()
     {
-        
+        Debug.Log(MiniGameManager.instance.MedicineCount);
+        if(MiniGameManager.instance.MedicineCount < 0)
+        {
+            //Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

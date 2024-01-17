@@ -20,14 +20,14 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void OnEnable()
     {
-        MiniGameManager.instance.ThreadCount = Random.Range(MiniGameManager.instance.MinThreadCount, MiniGameManager.instance.MaxThreadCount);
-        MiniGameManager.instance.stateMedicine = Random.Range(1, 3);
-
+        //MiniGameManager.instance.ThreadCount = Random.Range(MiniGameManager.instance.MinThreadCount, MiniGameManager.instance.MaxThreadCount);
+        MiniGameManager.stateMedicine = Random.Range(1, 3);
+        AddOnjectSppoint();
     }
 
     void Start()
     {
-        AddOnjectSppoint();
+        
     }
 
     void Update()

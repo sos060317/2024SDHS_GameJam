@@ -8,7 +8,8 @@ public class Patient : MonoBehaviour
 {
     private enum PatientStatess
     {
-        cut = 0, 
+        hospital = 0,
+        cut, 
         tear,
         Coronavirus
     }
@@ -24,6 +25,8 @@ public class Patient : MonoBehaviour
 
     [HideInInspector] public Transform doorPosition;
 
+    //private bool isCoolDown;
+
     private void Start()
     {
         SetUpClearTime();
@@ -36,12 +39,12 @@ public class Patient : MonoBehaviour
 
     private void Update()
     {
-        ClearTimeDown();
+            ClearTimeDown();
     }
 
     private void SetUpClearTime()
     {
-        clearTime = Random.Range(6, 9) - GameManager.Instance.clearPatient;
+        clearTime = Random.Range(60, 91) - GameManager.Instance.clearPatient;
     }
 
     private void ClearTimeDown()
@@ -74,11 +77,21 @@ public class Patient : MonoBehaviour
         int randomState = Random.Range(0, System.Enum.GetValues(typeof(PatientStatess)).Length);
 
         patientStatess = (PatientStatess)randomState;
-        stateIcon.sprite = stateSprite[randomState];
+        
+        if(randomState == 0)
+        {
+            stateIcon.sprite = stateSprite[randomState + 1];
+        }
+        else
+        {
+            stateIcon.sprite = stateSprite[randomState];
+        }
+
     }
 
     public void StartMiniGame()
     {
+        //isCoolDown = true;
         //GameManager.Instance.isGameStart = false;
         GameManager.Instance.fadeBackground.gameObject.SetActive(true);
         GameManager.Instance.FadeINOUTStart((int)patientStatess);

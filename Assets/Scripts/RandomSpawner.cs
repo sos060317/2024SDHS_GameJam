@@ -15,14 +15,11 @@ public class RandomSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-    }
-
-    void Start()
-    {
-        //이것도 내가 OnEnable에 있던거 위치 바꿨어 이유 궁금하면 내일 물어봐 - 우지원
+        //Debug.Log("dadf" + MiniGameManager.instance.ThreadCount);
         MiniGameManager.instance.ThreadCount = Random.Range(5, 10);
         SpawnObject();
     }
+
 
     void SpawnObject()
     {
